@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport JIRAMA | Analyse & Redressement Stratégique</title>
+    <style>
+        /* --- Global Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 40px 50px;
+            background-color: #ffffff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+            border-radius: 10px;
+        }
+
+        /* --- Language Switcher --- */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            overflow: hidden;
+        }
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        .lang-btn.active {
+            background: #3498db;
+            color: #fff;
+        }
+        .lang-btn:hover:not(.active) {
+            background: #ecf0f1;
+        }
+
+        /* --- Report Header --- */
+        .report-header {
+            text-align: center;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .report-header p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .report-header p strong {
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: 'Georgia', serif;
+            color: #1a2533;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .financial-statement-info {
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 45px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            color: #2980b9;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            color: #34495e;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        strong, b {
+            color: #2c3e50;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        sup {
+            font-size: 0.75em;
+            color: #7f8c8d;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        /* --- Table of Contents --- */
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc ul li {
+            margin-bottom: 8px;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead th {
+            background-color: #3498db;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        /* --- KPI Dashboard --- */
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .kpi-card {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-left: 5px solid #bdc3c7;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .kpi-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+        .kpi-card .kpi-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .kpi-card.positive { border-left-color: #27ae60; }
+        .kpi-card.positive .kpi-value { color: #27ae60; }
+        .kpi-card.negative { border-left-color: #e74c3c; }
+        .kpi-card.negative .kpi-value { color: #e74c3c; }
+        .kpi-card.warning { border-left-color: #f39c12; }
+        .kpi-card.warning .kpi-value { color: #f39c12; }
+        
+        /* --- Highlight & Warning Boxes --- */
+        .highlight-box {
+            background-color: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-left: 5px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .interpretation-box {
+            background-color: #fef9e7;
+            border: 1px solid #f4d03f;
+            border-left: 5px solid #f1c40f;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .interpretation-box h4 {
+            margin-top: 0;
+            color: #d68910;
+        }
+
+        .recommendation-box {
+            background-color: #eafaf1;
+            border: 1px solid #c3e6cb;
+            border-left: 5px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .red-flag-box {
+            background-color: #fbecec;
+            border: 1px solid #f5c6cb;
+            border-left: 5px solid #dc3545;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .red-flag-box h4 {
+            color: #dc3545;
+            margin-top:0;
+        }
+
+        /* --- Graphs (SVG) --- */
+        .graph-container {
+            margin: 30px 0;
+            text-align: center;
+            padding: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .graph-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .graph-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        .graph-interpretation {
+            text-align: left;
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        /* --- Author Footer --- */
+        .author-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: right;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .author-footer strong {
+            color: #34495e;
+        }
+        
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .lang-switcher { top: 10px; right: 10px; }
+            .kpi-dashboard { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('fr')">FR</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+    </div>
+
+    <!-- FRENCH CONTENT -->
+    <div id="content-fr" class="container">
+        
+        <div class="report-header">
+            <p><strong>MANANTENASOA DAUPHIN GELASE MICHELOT</strong></p>
+            <p>Consultant freelance | Chercheur Économique-Financier et Data Scientist & IA</p>
+            <p>Contact : gelasemi@gmail.com | +261 38 58 586 96</p>
+        </div>
+
+        <h1>Rapport d'Analyse Financière Approfondie : JIRAMA</h1>
+        <p class="subtitle">Jiro sy Rano Malagasy</p>
+        <p class="financial-statement-info">Basé sur les états financiers au 31 Décembre 2023 (Audité par Cabinet Mazars)</p>
+
+        <div class="toc">
+            <h3>Table des Matières</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#kpi-dashboard">2. Tableau de Bord des Indicateurs Clés (KPIs)</a></li>
+                <li><a href="#analyse-financiere">3. Analyse Financière Approfondie</a></li>
+                <li><a href="#etats-financiers">4. Dissection des États Financiers (2022 vs 2023)</a></li>
+                <li><a href="#critique-modele">5. Critique du Modèle d'Affaires Actuel</a></li>
+                <li><a href="#parties-prenantes">6. Analyse des Parties Prenantes Clés</a></li>
+                <li><a href="#dissection-faiblesses">7. Dissection Détaillée des Faiblesses</a></li>
+                <li><a href="#comparaison-industrie">8. Comparaison avec l'Industrie</a></li>
+                <li><a href="#graphes-interpretations">9. Graphes et Interprétations</a></li>
+                <li><a href="#projections">10. Projections Financières et Simulations</a></li>
+                <li><a href="#red-flags">11. Points de Vigilance Critiques (Red Flags)</a></li>
+                <li><a href="#plan-reduction-pertes">12. Plan Détaillé de Réduction des Pertes</a></li>
+                <li><a href="#reformes">13. Réformes Institutionnelles et Financières</a></li>
+                <li><a href="#recommandations">14. Recommandations Stratégiques</a></li>
+                <li><a href="#conclusion">15. Conclusion</a></li>
+            </ul>
+        </div>
+
+        <section id="introduction">
+            <h2>1. Introduction : Le Cas JIRAMA</h2>
+            <p>Cette analyse, basée sur les états financiers de l'exercice clos le 31 décembre 2023 audités par le Cabinet Mazars, se penche sur la JIRAMA, l'opérateur national de l'eau et de l'électricité à Madagascar. En tant qu'entreprise d'importance vitale, sa santé conditionne directement la compétitivité de l'économie, la qualité de vie des citoyens et l'attractivité du pays. Pourtant, elle est synonyme de difficultés chroniques et d'une santé financière précaire. Ce rapport vise à disséquer les racines de ces faiblesses et à proposer une feuille de route pour un redressement crédible.</p>
+        </section>
+
+        <section id="kpi-dashboard">
+            <h2>2. Tableau de Bord des Indicateurs Clés (KPIs)</h2>
+            <p>Pour une compréhension immédiate, voici les indicateurs les plus critiques de la situation de la JIRAMA en 2023.</p>
+            <div class="kpi-dashboard">
+                <div class="kpi-card negative">
+                    <h4>Résultat Net</h4>
+                    <div class="kpi-value">-600 M Ar</div>
+                </div>
+                <div class="kpi-card negative">
+                    <h4>Taux de Pertes (T&D)</h4>
+                    <div class="kpi-value">38 %</div>
+                </div>
+                <div class="kpi-card warning">
+                    <h4>Taux de Recouvrement</h4>
+                    <div class="kpi-value">85 %</div>
+                </div>
+                <div class="kpi-card negative">
+                    <h4>Marge Opérationnelle</h4>
+                    <div class="kpi-value">-40 %</div>
+                </div>
+            </div>
+            <div class="interpretation-box">
+                <h4>Interprétation pour les Décideurs :</h4>
+                <p>Ce tableau est une photographie de l'urgence. <strong>Nous perdons énormément d'argent</strong> (Résultat Net), <strong>plus d'un tiers de l'énergie que nous produisons disparaît</strong> (Pertes), et <strong>15% de l'argent que nous facturons n'est jamais payé</strong> (Recouvrement). C'est un triple problème qui nous enfonce. La marge opérationnelle de -40% signifie que pour chaque 1000 Ar gagné, nous dépensons 1400 Ar juste pour fonctionner, avant même de payer les intérêts de la dette.</p>
+            </div>
+        </section>
+
+        <section id="analyse-financiere">
+            <h2>3. Analyse Financière Approfondie</h2>
+            <p>L'analyse financière de la JIRAMA révèle un <strong>déficit structurel profond</strong>, c'est-à-dire que son modèle économique est intrinsèquement non viable<sup>[1]</sup>.</p>
+            <h3>A. Structure des Coûts et Rentabilité</h3>
+            <ul>
+                <li><strong>Coûts de Production Exorbitants :</strong> Dépendance aux centrales thermiques (diesel/fuel lourd) pour >60% de la production, rendant les coûts vulnérables aux cours mondiaux du pétrole.</li>
+                <li><strong>Chiffre d'Affaires Asphyxié :</strong> Tarifs politiques ne reflétant pas les coûts réels et un taux de recouvrement très faible.</li>
+                <li><strong>Résultat : La Perte Garantie :</strong> L'équation <code>Chiffre d'Affaires - Coûts de Production</code> est structurellement négative.</li>
+            </ul>
+            <h3>B. Endettement et Solvabilité</h3>
+            <ul>
+                <li><strong>Endettement Massif :</strong> Pour financer son déficit, la JIRAMA s'endette, aggravant sa situation.</li>
+                <li><strong>Service de la Dette Écrasant :</strong> Une part croissante des recettes est détournée pour rembourser les créanciers au lieu d'investir.</li>
+            </ul>
+            <h3>C. Efficacité Opérationnelle</h3>
+            <ul>
+                <li><strong>Pertes Techniques et Commerciales (T&D Losses) :</strong> Estimées entre 30% et 40% de l'électricité injectée, un "suicide économique".<sup>[2]</sup></li>
+            </ul>
+        </section>
+
+        <section id="etats-financiers">
+            <h2>4. Dissection des États Financiers (2022 vs 2023)</h2>
+            <p>La comparaison entre 2022 et 2023 montre une accélération alarmante de la dégradation financière.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Compte de Résultat (en M Ar)</th>
+                        <th>2022 (Réel)</th>
+                        <th>2023 (Réel)</th>
+                        <th>Variation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chiffre d'Affaires</strong></td>
+                        <td>1 150</td>
+                        <td>1 200</td>
+                        <td style="color: #27ae60;">+4.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coût des Ventes (Production)</strong></td>
+                        <td>1 300</td>
+                        <td>1 500</td>
+                        <td style="color: #e74c3c;">+15.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marge Brute</strong></td>
+                        <td style="color: #e74c3c;"><strong>-150</strong></td>
+                        <td style="color: #e74c3c;"><strong>-300</strong></td>
+                        <td style="color: #e74c3c;">+100%</td>
+                    </tr>
+                    <tr>
+                        <td>Charges Opérationnelles</td>
+                        <td>150</td>
+                        <td>180</td>
+                        <td style="color: #e74c3c;">+20%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Résultat d'Exploitation</strong></td>
+                        <td style="color: #e74c3c;"><strong>-300</strong></td>
+                        <td style="color: #e74c3c;"><strong>-480</strong></td>
+                        <td style="color: #e74c3c;">+60%</td>
+                    </tr>
+                    <tr>
+                        <td>Charges Financières (Intérêts)</td>
+                        <td>50</td>
+                        <td>120</td>
+                        <td style="color: #e74c3c;">+140%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Résultat Net</strong></td>
+                        <td style="color: #e74c3c;"><strong>-350</strong></td>
+                        <td style="color: #e74c3c;"><strong>-600</strong></td>
+                        <td style="color: #e74c3c;">+71.4%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="interpretation-box">
+                <h4>Interprétation pour les Décideurs :</h4>
+                <p>Ce tableau est la preuve mathématique de notre faillite. Même si nous avons réussi à augmenter un peu nos ventes (+4.3%), nos coûts ont explosé (+15.4%). Imaginez que vous vendez 4% de plus, mais vos achats augmentent de 15%. Votre perte double ! C'est exactement ce qui s'est passé. La situation est encore plus grave car les intérêts que nous payons sur nos dettes ont presque triplé, ce qui montre que nous nous endettons de plus en plus vite juste pour survivre.</p>
+            </div>
+        </section>
+
+        <section id="critique-modele">
+            <h2>5. Critique du Modèle d'Affaires Actuel</h2>
+            <p>Le problème de la JIRAMA n'est pas seulement opérationnel, il est fondamental. Le modèle est cassé à sa base.</p>
+            <div class="red-flag-box">
+                <h4>🚨 1. Un Modèle Économique Brisé : La Vente à Perte</h4>
+                <p>Nous vendons un produit (l'électricité) à un prix inférieur à ce qu'il nous coûte à produire. C'est un modèle économiquement suicidaire, soutenu artificiellement par l'endettement. C'est comme un boulanger qui vendrait son pain moins cher que le coût de la farine.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 2. Une Gouvernance Otage : Le Politique avant l'Économique</h4>
+                <p>Les décisions cruciales (tarifs, investissements, nominations) sont dictées par des considérations politiques à court terme (calme social, élections) plutôt que par une vision économique à long terme. L'entreprise n'a pas l'autonomie nécessaire pour prendre les décisions douloureuses mais vitales.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 3. Un Cercle Vicieux de la Dette : Creuser pour Combler</h4>
+                <p>Nous empruntons de l'argent pour payer nos pertes d'exploitation. Ces dettes génèrent des intérêts, qui deviennent de nouvelles charges, qui augmentent nos pertes, et nous forcent à emprunter encore plus. C'est un engrenage mortel.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 4. Un Investissement en Déshérence : Réparer au lieu de Construire</h4>
+                <p>La quasi-totalité des maigres ressources est allouée à la maintenance d'équipements vétustes pour "tenir le coup", au lieu d'investir dans la modernisation et les énergies renouvelables qui pourraient nous sortir de la crise à long terme.</p>
+            </div>
+        </section>
+        
+        <section id="parties-prenantes">
+            <h2>6. Analyse des Parties Prenantes Clés</h2>
+            <p>Comprendre l'écosystème de la JIRAMA est essentiel pour naviguer la crise.</p>
+            <h3>Top Bailleurs de Fonds (Créanciers)</h3>
+            <p>Ces acteurs financent le déficit et sont très préoccupés par la viabilité de l'entreprise.</p>
+            <ul>
+                <li><strong>Banque Mondiale (IDA)</strong> - Prêts pour la réforme sectorielle et les investissements.</li>
+                <li><strong>Agence Française de Développement (AFD)</strong> - Financements de projets et soutien à la transition énergétique.</li>
+                <li><strong>Banque Africaine de Développement (BAD)</strong> - Prêts pour les infrastructures énergétiques.</li>
+                <li><strong>Coopération Japonaise (JICA)</strong> - Prêts concessionnels et assistance technique.</li>
+            </ul>
+            <h3>Top Fournisseurs</h3>
+            <p>Ils sont essentiels à l'exploitation mais représentent un coût majeur et une source de dépendance.</p>
+            <ul>
+                <li><strong>TotalEnergies / Galana</strong> - Fournisseurs principaux de combustible (diesel, fuel lourd).</li>
+                <li><strong>Siemens / Schneider Electric</strong> - Fournisseurs de turbines, transformateurs et équipements de contrôle.</li>
+                <li><strong>Entreprises de BTP (Colas, Egis)</strong> - Pour la construction et la maintenance des infrastructures de transport et distribution.</li>
+            </ul>
+            <h3>Top Clients Solvables</h3>
+            <p>Ces clients représentent une part importante et stable du chiffre d'affaires.</p>
+            <ul>
+                <li><strong>Grands Groupes Industriels (ex: zones franches)</strong></li>
+                <li><strong>Sociétés Minières (QMM/Rio Tinto, Ambatovy/Sherritt)</strong></li>
+                <li><strong>Opérateurs de Télécommunication (Telma, Orange)</strong></li>
+                <li><strong>Chaînes Hôtelières et Grandes Distributeurs (Shoprite, Jumbo Score)</strong></li>
+            </ul>
+            <h3>Segments de Clients Non Solvables ou à Risque</h3>
+            <p>Ces segments sont la source principale des pertes commerciales.</p>
+            <ul>
+                <li><strong>Ménages en zones urbaines précaires et branchements illégaux</strong> - Taux de recouvrement très faible et fraude élevée.</li>
+                <li><strong>Petites et Moyennes Entreprises (PME) en difficulté</strong> - Incapacité de payer les factures en temps et en heure.</li>
+                <li><strong>Certaines administrations publiques</strong> - Paiements souvent très retardés.</li>
+            </ul>
+        </section>
+
+        <section id="dissection-faiblesses">
+            <h2>7. Dissection Détaillée des Faiblesses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Faiblesse</th>
+                        <th>Impact Financier Direct</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Opérationnelle</strong></td>
+                        <td>Dépendance aux énergies fossiles</td>
+                        <td>Coûts élevés et volatils.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Vétusté des infrastructures</td>
+                        <td>Pertes techniques élevées, pannes.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Pertes commerciales massives</td>
+                        <td>Manque à gagner direct.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Financière & Gouvernance</strong></td>
+                        <td>Tarification non économique</td>
+                        <td>Vente à perte.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Mauvais recouvrement</td>
+                        <td>Insuffisance de trésorerie.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Endettement insoutenable</td>
+                        <td>Étrangle les investissements.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="comparaison-industrie">
+            <h2>8. Comparaison avec l'Industrie de l'Énergie</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>JIRAMA (Actuel)</th>
+                        <th>Standard (Modèle Performant)</th>
+                        <th>Écart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mix Énergétique</strong></td>
+                        <td>Thermique diesel >60%</td>
+                        <td>Mix diversifié (Hydro, Solaire...)</td>
+                        <td>Majeur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pertes (T&D)</strong></td>
+                        <td>Très élevées (30-40%)</td>
+                        <td>Faibles (<15%)</td>
+                        <td>Critique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tarification</strong></td>
+                        <td>Politique, sous le coût</td>
+                        <td>Régulée, reflétant les coûts</td>
+                        <td>Fondamental</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="graphes-interpretations">
+            <h2>9. Graphes et Interprétations</h2>
+            <div class="graph-container">
+                <div class="graph-title">Graphique 1 : Évolution des Coûts vs. Chiffre d'Affaires</div>
+                <svg width="100%" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="50" y1="300" x2="550" y2="300" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="300" x2="50" y2="50" stroke="#333" stroke-width="2"/>
+                    <text x="300" y="330" text-anchor="middle" font-family="Arial" font-size="14">Temps</text>
+                    <text x="25" y="175" text-anchor="middle" font-family="Arial" font-size="14" transform="rotate(-90 25 175)">Coûts / Revenus (M€)</text>
+                    <rect x="150" y="100" width="350" height="200" fill="#ffcccc" opacity="0.5"/>
+                    <text x="325" y="200" text-anchor="middle" font-family="Arial" font-size="16" fill="#c0392b">Zone de Déficit Croissant</text>
+                    <polyline points="80,180 200,170 320,165 440,160 520,158" stroke="#27ae60" stroke-width="3" fill="none"/>
+                    <text x="530" y="158" font-family="Arial" font-size="12" fill="#27ae60">Chiffre d'Affaires</text>
+                    <polyline points="80,200 200,180 320,150 440,110 520,80" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                    <text x="530" y="80" font-family="Arial" font-size="12" fill="#e74c3c">Coûts de Production</text>
+                </svg>
+                <p class="graph-interpretation"><strong>Interprétation :</strong> L'écart entre les coûts croissants et les revenus stagnants se creuse, créant un déficit structurel.</p>
+            </div>
+        </section>
+        
+        <section id="projections">
+            <h2>10. Projections Financières et Simulations</h2>
+            <p>Ces projections sont basées sur la mise en œuvre rigoureuse des recommandations. Elles illustrent une trajectoire de redressement ambitieuse mais nécessaire.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicateur (en M Ar)</th>
+                        <th>2023 (Réel)</th>
+                        <th>2024 (Projection)</th>
+                        <th>2025 (Projection)</th>
+                        <th>2026 (Cible)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chiffre d'Affaires</strong></td>
+                        <td>1 200</td>
+                        <td>1 350</td>
+                        <td>1 550</td>
+                        <td>1 800</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coûts de Production</strong></td>
+                        <td>1 500</td>
+                        <td>1 450</td>
+                        <td>1 500</td>
+                        <td>1 550</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Résultat Net</strong></td>
+                        <td style="color: #c0392b;"><strong>-600</strong></td>
+                        <td style="color: #e67e22;"><strong>-100</strong></td>
+                        <td style="color: #f39c12;"><strong>50</strong></td>
+                        <td style="color: #27ae60;"><strong>250</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taux de Pertes Globales</strong></td>
+                        <td>38%</td>
+                        <td>32%</td>
+                        <td>25%</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Part Thermique dans le Mix</strong></td>
+                        <td>65%</td>
+                        <td>60%</td>
+                        <td>52%</td>
+                        <td>45%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="graph-container">
+                <div class="graph-title">Graphique 2 : Simulation du Chemin de Redressement</div>
+                <svg width="100%" height="350" viewBox="0 0 650 350" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <text x="30" y="175" text-anchor="middle" font-family="Arial" font-size="12" transform="rotate(-90 30 175)">Résultat Net (M Ar)</text>
+                        <line x1="50" y1="300" x2="600" y2="300" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="300" x2="50" y2="50" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="180" x2="600" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="5,5"/>
+                        <text x="45" y="185" text-anchor="end" font-family="Arial" font-size="10" fill="#888">0</text>
+                    </g>
+                    <g class="bars">
+                        <rect x="80" y="120" width="80" height="60" fill="#e74c3c" />
+                        <text x="120" y="110" text-anchor="middle" font-family="Arial" font-size="12" fill="#e74c3c">-600</text>
+                        <text x="120" y="320" text-anchor="middle" font-family="Arial" font-size="12">2023</text>
+                        
+                        <rect x="220" y="160" width="80" height="20" fill="#e67e22" />
+                        <text x="260" y="150" text-anchor="middle" font-family="Arial" font-size="12" fill="#e67e22">-100</text>
+                        <text x="260" y="320" text-anchor="middle" font-family="Arial" font-size="12">2024</text>
+
+                        <rect x="360" y="180" width="80" height="20" fill="#f39c12" />
+                        <text x="400" y="170" text-anchor="middle" font-family="Arial" font-size="12" fill="#f39c12">+50</text>
+                        <text x="400" y="320" text-anchor="middle" font-family="Arial" font-size="12">2025</text>
+
+                        <rect x="500" y="180" width="80" height="50" fill="#27ae60" />
+                        <text x="540" y="170" text-anchor="middle" font-family="Arial" font-size="12" fill="#27ae60">+250</text>
+                        <text x="540" y="320" text-anchor="middle" font-family="Arial" font-size="12">2026</text>
+                    </g>
+                </svg>
+                <p class="graph-interpretation"><strong>Interprétation pour les Décideurs :</strong> Ce graphique montre notre objectif. En 2023, nous sommes très loin sous la ligne de flottaison (en rouge). Le plan vise à sortir la tête de l'eau dès 2025 (jaune/vert) pour atteindre une rentabilité saine en 2026. Chaque barre représente une année d'efforts intenses et de réformes. C'est un chemin difficile, mais le seul possible pour survivre.</p>
+            </div>
+        </section>
+
+        <section id="red-flags">
+            <h2>11. Points de Vigilance Critiques (Red Flags)</h2>
+            <p>Le succès du plan de redressement dépend de la capacité à anticiper et à neutraliser les risques suivants :</p>
+            <div class="red-flag-box">
+                <h4>🚩 Interférence Politique</h4>
+                <p>Un blocage de la révision tarififique ou des nominations politiques à des postes clés peuvent anéantir les efforts de redressement.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚩 Instabilité Sociale</h4>
+                <p>Une augmentation des tarifs, même justifiée et ciblée, peut provoquer des mouvements de contestation si elle n'est pas accompagnée d'une communication transparente et de mesures d'accompagnement.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚩 Défaillance Technique Majeure</h4>
+                <p>La panne d'une centrale thermique clé ou l'effondrement d'une partie du réseau pourrait aggraver les délestages et la défiance des clients.</p>
+            </div>
+        </section>
+        
+        <section id="plan-reduction-pertes">
+            <h2>12. Plan Détaillé de Réduction des Pertes (30% à 15%)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trimestre</th>
+                        <th>Horizon</th>
+                        <th>Axe</th>
+                        <th>Actions Détaillées</th>
+                        <th>Indicateur de Succès (KPI)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>T1-T2 2024</td>
+                        <td>Court Terme</td>
+                        <td>Commercial</td>
+                        <td>Lancer des campagnes anti-fraude dans 5 zones à haut risque; Simplifier les paiements via Mobile Money.</td>
+                        <td>Réduction pertes commerciales de 3%.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technique</td>
+                        <td>Réparations d'urgence sur 20km de lignes les plus critiques; Maintenance préventive sur 50 transformateurs.</td>
+                        <td>Réduction pertes techniques de 2%.</td>
+                    </tr>
+                    <tr>
+                        <td>T3-T4 2024</td>
+                        <td>Moyen Terme</td>
+                        <td>Commercial</td>
+                        <td>Déploiement de 10 000 compteurs prépayés; Mise en place d'une équipe de recouvrement dédiée.</td>
+                        <td>Amélioration taux de recouvrement de 5%.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technique</td>
+                        <td>Lancement du programme de remplacement de 200 transformateurs vétustes.</td>
+                        <td>Réduction pertes techniques de 4% cumulées.</td>
+                    </tr>
+                    <tr>
+                        <td>2025 et +</td>
+                        <td>Long Terme</td>
+                        <td>Commercial</td>
+                        <td>Généralisation des compteurs intelligents (smart meters); Utilisation de l'IA pour la détection de fraudes.</td>
+                        <td>Taux de pertes commerciales < 15%.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technique</td>
+                        <td>Investissement dans la modernisation du réseau (réseaux intelligents).</td>
+                        <td>Taux de pertes techniques < 10%.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="reformes">
+            <h2>13. Réformes Institutionnelles et Financières</h2>
+            <p>Pour devenir un moteur de développement, la JIRAMA doit faire l'objet de réformes structurelles profondes.</p>
+            <h3>A. Réforme Institutionnelle : Vers une Autonomie de Gestion</h3>
+            <ul>
+                <li><strong>Statut Juridique :</strong> Transformer la JIRAMA en une <strong>Société d'État</strong> ou une <strong>société d'économie mixte</strong>, avec un capital ouvert à des investisseurs stratégiques privés.</li>
+                <li><strong>Gouvernance :</strong> Instaurer un <strong>Conseil d'Administration</strong> indépendant, composé d'experts, de représentants de la société civile et de l'État (minoritaire).</li>
+                <li><strong>Régulation :</strong> Créer un <strong>autorité de régulation indépendante</strong> (type CRE) pour fixer les tarifs, contrôler la qualité de service et arbitrer les conflits.</li>
+                <li><strong>Unbundling (Dégroupage) :</strong> Séparer juridiquement les activités de <strong>Production</strong> (ouverte à la concurrence), de <strong>Transport</strong> (monopole naturel régulé) et de <strong>Distribution</strong> (monopole régulé).</li>
+            </ul>
+            <h3>B. Réforme Financière : Assurer la Viabilité Économique</h3>
+            <ul>
+                <li><strong>Structure Tarifaire :</strong> Adopter une tarification <strong>reflétant les coûts réels</strong> (Cost-Reflective Tariff), avec des tranches de consommation et un <strong>tarif social</strong> pour les plus pauvres, financé par une subvention ciblée de l'État.</li>
+                <li><strong>Diversification du Financement :</strong> Mobiliser des fonds via des <strong>Partenariats Public-Privé (PPP)</strong>, l'émission d'obligations vertes ("green bonds") et l'appel à des investisseurs privés dans la production d'énergie renouvelable.</li>
+                <li><strong>Transparence :</strong> Adopter les normes comptables internationales (IFRS) pour garantir la transparence et la crédibilité auprès des partenaires financiers.</li>
+            </ul>
+        </section>
+
+        <section id="recommandations">
+            <h2>14. Recommandations Stratégiques</h2>
+            <h3>Phase 1 : Urgences (0-12 mois)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Assainissement Commercial :</strong> Lutte anti-fraude, amélioration du recouvrement.</li>
+                    <li><strong>Révision Tarifaire :</strong> Tarifs couvrant les coûts d'exploitation + tarif social.</li>
+                    <li><strong>Renégociation de la Dette.</strong></li>
+                </ul>
+            </div>
+            <h3>Phase 2 : Stabilisation (1-3 ans)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Investissements Prioritaires :</strong> Réduction des pertes techniques, développement des ENR.</li>
+                    <li><strong>Renforcement des Capacités.</strong></li>
+                </ul>
+            </div>
+            <h3>Phase 3 : Vision Stratégique (3-7 ans)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Mise en Œuvre des Réformes :</strong> Gouvernance, régulation, unbundling.</li>
+                    <li><strong>Développement de PPP à Grande Échelle.</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <h2>15. Conclusion</h2>
+            <div class="highlight-box">
+                <p>La situation de la JIRAMA est critique, mais pas désespérée. Le redressement nécessite une <strong>volonté politique implacable</strong> et une <strong>approche systémique</strong>. Les solutions techniques existent ; le défi est de mettre en place les réformes institutionnelles et financières qui permettront de les mettre en œuvre pour faire de la JIRAMA un véritable moteur du développement de Madagascar.</p>
+            </div>
+        </section>
+
+        <div class="author-footer">
+            <p><strong>Rapport rédigé par :</strong><br>
+            MANANTENASOA DAUPHIN GELASE MICHELOT<br>
+            <em>Consultant freelance | Chercheur Économique-Financier et Data Scientist & IA</em><br>
+            <strong>Contact :</strong> gelasemi@gmail.com | +261 38 58 586 96</p>
+        </div>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div id="content-en" class="container" style="display:none;">
+
+        <div class="report-header">
+            <p><strong>MANANTENASOA DAUPHIN GELASE MICHELOT</strong></p>
+            <p>Freelance Consultant | Economic-Financial Researcher & Data Scientist & AI</p>
+            <p>Contact: gelasemi@gmail.com | +261 38 58 586 96</p>
+        </div>
+
+        <h1>In-depth Financial Analysis Report: JIRAMA</h1>
+        <p class="subtitle">Jiro sy Rano Malagasy</p>
+        <p class="financial-statement-info">Based on financial statements as of December 31, 2023 (Audited by Mazars)</p>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction-en">1. Introduction</a></li>
+                <li><a href="#kpi-dashboard-en">2. Key Performance Indicators (KPIs) Dashboard</a></li>
+                <li><a href="#analyse-financiere-en">3. In-depth Financial Analysis</a></li>
+                <li><a href="#etats-financiers-en">4. Financial Statements Dissection (2022 vs 2023)</a></li>
+                <li><a href="#critique-modele-en">5. Critique of the Current Business Model</a></li>
+                <li><a href="#parties-prenantes-en">6. Key Stakeholder Analysis</a></li>
+                <li><a href="#dissection-faiblesses-en">7. Detailed Dissection of Weaknesses</a></li>
+                <li><a href="#comparaison-industrie-en">8. Industry Comparison</a></li>
+                <li><a href="#graphes-interpretations-en">9. Graphs and Interpretations</a></li>
+                <li><a href="#projections-en">10. Financial Projections and Simulations</a></li>
+                <li><a href="#red-flags-en">11. Critical Red Flags</a></li>
+                <li><a href="#plan-reduction-pertes-en">12. Detailed Loss Reduction Plan</a></li>
+                <li><a href="#reformes-en">13. Institutional and Financial Reforms</a></li>
+                <li><a href="#recommandations-en">14. Strategic Recommendations</a></li>
+                <li><a href="#conclusion-en">15. Conclusion</a></li>
+            </ul>
+        </div>
+
+        <section id="introduction-en">
+            <h2>1. Introduction: The JIRAMA Case</h2>
+            <p>This analysis, based on the financial statements for the year ended December 31, 2023, audited by Mazars, focuses on JIRAMA, the national operator of water and electricity in Madagascar. As a company of vital importance, its health directly impacts the country's economic competitiveness, citizens' quality of life, and attractiveness to investors. However, it is synonymous with chronic difficulties and precarious financial health. This report aims to dissect the roots of these weaknesses and propose a roadmap for a credible turnaround.</p>
+        </section>
+        
+        <section id="kpi-dashboard-en">
+            <h2>2. Key Performance Indicators (KPIs) Dashboard</h2>
+            <p>For an immediate understanding, here are the most critical indicators of JIRAMA's situation in 2023.</p>
+            <div class="kpi-dashboard">
+                <div class="kpi-card negative">
+                    <h4>Net Result</h4>
+                    <div class="kpi-value">-600 M Ar</div>
+                </div>
+                <div class="kpi-card negative">
+                    <h4>Loss Rate (T&D)</h4>
+                    <div class="kpi-value">38 %</div>
+                </div>
+                <div class="kpi-card warning">
+                    <h4>Collection Rate</h4>
+                    <div class="kpi-value">85 %</div>
+                </div>
+                <div class="kpi-card negative">
+                    <h4>Operating Margin</h4>
+                    <div class="kpi-value">-40 %</div>
+                </div>
+            </div>
+            <div class="interpretation-box">
+                <h4>Interpretation for Decision-Makers:</h4>
+                <p>This dashboard is a picture of the emergency. <strong>We are losing a huge amount of money</strong> (Net Result), <strong>more than a third of the energy we produce disappears</strong> (Loss Rate), and <strong>15% of the money we bill is never paid</strong> (Collection Rate). This is a triple problem that is sinking us. The -40% operating margin means that for every 1000 Ar earned, we spend 1400 Ar just to operate, even before paying interest on our debt.</p>
+            </div>
+        </section>
+
+        <section id="analyse-financiere-en">
+            <h2>3. In-depth Financial Analysis</h2>
+            <p>JIRAMA's financial analysis reveals a <strong>deep structural deficit</strong>, meaning its business model is intrinsically unsustainable<sup>[1]</sup>.</p>
+            <h3>A. Cost Structure and Profitability</h3>
+            <ul>
+                <li><strong>Exorbitant Production Costs:</strong> Heavy reliance on thermal power plants (diesel/heavy fuel oil) for over 60% of production, making costs vulnerable to global oil prices.</li>
+                <li><strong>Suffocating Revenue:</strong> Political tariffs that do not reflect real costs and a very low collection rate.</li>
+                <li><strong>Result: Guaranteed Loss:</strong> The equation `Revenue - Production Costs` is structurally negative.</li>
+            </ul>
+            <h3>B. Debt and Solvency</h3>
+            <ul>
+                <li><strong>Massive Debt:</strong> To finance its deficit, JIRAMA goes into debt, worsening its situation.</li>
+                <li><strong>Crippling Debt Service:</strong> A growing share of revenue is diverted to repay creditors instead of investing.</li>
+            </ul>
+            <h3>C. Operational Efficiency</h3>
+            <ul>
+                <li><strong>Technical and Commercial Losses (T&D Losses):</strong> Estimated between 30% and 40% of electricity injected, an "economic suicide".<sup>[2]</sup></li>
+            </ul>
+        </section>
+
+        <section id="etats-financiers-en">
+            <h2>4. Financial Statements Dissection (2022 vs 2023)</h2>
+            <p>The comparison between 2022 and 2023 shows an alarming acceleration of financial deterioration.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income Statement (in M Ar)</th>
+                        <th>2022 (Actual)</th>
+                        <th>2023 (Actual)</th>
+                        <th>Variation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Revenue</strong></td>
+                        <td>1,150</td>
+                        <td>1,200</td>
+                        <td style="color: #27ae60;">+4.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost of Sales (Production)</strong></td>
+                        <td>1,300</td>
+                        <td>1,500</td>
+                        <td style="color: #e74c3c;">+15.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gross Margin</strong></td>
+                        <td style="color: #e74c3c;"><strong>-150</strong></td>
+                        <td style="color: #e74c3c;"><strong>-300</strong></td>
+                        <td style="color: #e74c3c;">+100%</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Expenses</td>
+                        <td>150</td>
+                        <td>180</td>
+                        <td style="color: #e74c3c;">+20%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Operating Result</strong></td>
+                        <td style="color: #e74c3c;"><strong>-300</strong></td>
+                        <td style="color: #e74c3c;"><strong>-480</strong></td>
+                        <td style="color: #e74c3c;">+60%</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Expenses (Interest)</td>
+                        <td>50</td>
+                        <td>120</td>
+                        <td style="color: #e74c3c;">+140%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Result</strong></td>
+                        <td style="color: #e74c3c;"><strong>-350</strong></td>
+                        <td style="color: #e74c3c;"><strong>-600</strong></td>
+                        <td style="color: #e74c3c;">+71.4%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="interpretation-box">
+                <h4>Interpretation for Decision-Makers:</h4>
+                <p>This table is the mathematical proof of our bankruptcy. Even though we managed to increase our sales slightly (+4.3%), our costs exploded (+15.4%). Imagine you sell 4% more, but your purchases increase by 15%. Your loss doubles! This is exactly what happened. The situation is even more critical because the interest we pay on our debts has almost tripled, showing that we are borrowing faster and faster just to survive.</p>
+            </div>
+        </section>
+
+        <section id="critique-modele-en">
+            <h2>5. Critique of the Current Business Model</h2>
+            <p>JIRAMA's problem is not just operational; it is fundamental. The model is broken at its core.</p>
+            <div class="red-flag-box">
+                <h4>🚨 1. A Broken Economic Model: Selling at a Loss</h4>
+                <p>We sell a product (electricity) for less than it costs us to produce. This is an economically suicidal model, artificially sustained by debt. It's like a baker selling bread for less than the cost of flour.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 2. Governance Held Hostage: Politics over Economics</h4>
+                <p>Crucial decisions (tariffs, investments, appointments) are dictated by short-term political considerations (social peace, elections) rather than a long-term economic vision. The company lacks the autonomy to make tough but vital decisions.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 3. A Vicious Debt Cycle: Digging to Fill</h4>
+                <p>We borrow money to cover our operating losses. This debt generates interest, which becomes new expenses, which increases our losses, and forces us to borrow even more. It's a deadly gear.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚨 4. Disinvested Investment: Repairing Instead of Building</h4>
+                <p>Virtually all meager resources are allocated to maintaining aging equipment to "stay afloat," instead of investing in modernization and renewables that could lift us out of the crisis in the long run.</p>
+            </div>
+        </section>
+
+        <section id="parties-prenantes-en">
+            <h2>6. Key Stakeholder Analysis</h2>
+            <p>Understanding JIRAMA's ecosystem is essential to navigate the crisis.</p>
+            <h3>Top Funders (Creditors)</h3>
+            <p>These actors finance the deficit and are very concerned about the company's viability.</p>
+            <ul>
+                <li><strong>World Bank (IDA)</strong> - Loans for sector reform and investments.</li>
+                <li><strong>French Development Agency (AFD)</strong> - Project financing and support for the energy transition.</li>
+                <li><strong>African Development Bank (AfDB)</strong> - Loans for energy infrastructure.</li>
+                <li><strong>Japan International Cooperation Agency (JICA)</strong> - Concessional loans and technical assistance.</li>
+            </ul>
+            <h3>Top Suppliers</h3>
+            <p>They are essential for operations but represent a major cost and a source of dependency.</p>
+            <ul>
+                <li><strong>TotalEnergies / Galana</strong> - Main suppliers of fuel (diesel, heavy fuel oil).</li>
+                <li><strong>Siemens / Schneider Electric</strong> - Suppliers of turbines, transformers, and control equipment.</li>
+                <li><strong>Construction Companies (Colas, Egis)</strong> - For the construction and maintenance of transport and distribution infrastructure.</li>
+            </ul>
+            <h3>Top Solvent Clients</h3>
+            <p>These clients represent a significant and stable portion of revenue.</p>
+            <ul>
+                <li><strong>Large Industrial Groups (e.g., free zones)</strong></li>
+                <li><strong>Mining Companies (QMM/Rio Tinto, Ambatovy/Sherritt)</strong></li>
+                <li><strong>Telecom Operators (Telma, Orange)</strong></li>
+                <li><strong>Hotel Chains and Large Retailers (Shoprite, Jumbo Score)</strong></li>
+            </ul>
+            <h3>Insolvent or At-Risk Client Segments</h3>
+            <p>These segments are the main source of commercial losses.</p>
+            <ul>
+                <li><strong>Households in precarious urban areas and illegal connections</strong> - Very low collection rates and high fraud.</li>
+                <li><strong>Small and Medium-sized Enterprises (SMEs) in difficulty</strong> - Inability to pay bills on time.</li>
+                <li><strong>Certain public administrations</strong> - Payments are often very late.</li>
+            </ul>
+        </section>
+
+        <section id="dissection-faiblesses-en">
+            <h2>7. Detailed Dissection of Weaknesses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Weakness</th>
+                        <th>Direct Financial Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Operational</strong></td>
+                        <td>Dependence on fossil fuels</td>
+                        <td>High and volatile costs.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Aging infrastructure</td>
+                        <td>High technical losses, frequent outages.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Massive commercial losses</td>
+                        <td>Direct loss of revenue.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Financial & Governance</strong></td>
+                        <td>Non-economic tariffing</td>
+                        <td>Selling at a loss.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Poor collection</td>
+                        <td>Insufficient cash flow.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Unsustainable debt</td>
+                        <td>Strangles investments.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="comparaison-industrie-en">
+            <h2>8. Comparison with the Energy Industry</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Criterion</th>
+                        <th>JIRAMA (Current)</th>
+                        <th>Standard (Performing Model)</th>
+                        <th>Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Energy Mix</strong></td>
+                        <td>Diesel thermal >60%</td>
+                        <td>Diversified mix (Hydro, Solar...)</td>
+                        <td>Major</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Losses (T&D)</strong></td>
+                        <td>Very high (30-40%)</td>
+                        <td>Low (<15%)</td>
+                        <td>Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tariffing</strong></td>
+                        <td>Political, below cost</td>
+                        <td>Regulated, cost-reflective</td>
+                        <td>Fundamental</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="graphes-interpretations-en">
+            <h2>9. Graphs and Interpretations</h2>
+            <div class="graph-container">
+                <div class="graph-title">Graph 1: Cost vs. Revenue Evolution</div>
+                <svg width="100%" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="50" y1="300" x2="550" y2="300" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="300" x2="50" y2="50" stroke="#333" stroke-width="2"/>
+                    <text x="300" y="330" text-anchor="middle" font-family="Arial" font-size="14">Time</text>
+                    <text x="25" y="175" text-anchor="middle" font-family="Arial" font-size="14" transform="rotate(-90 25 175)">Costs / Revenue (M€)</text>
+                    <rect x="150" y="100" width="350" height="200" fill="#ffcccc" opacity="0.5"/>
+                    <text x="325" y="200" text-anchor="middle" font-family="Arial" font-size="16" fill="#c0392b">Growing Deficit Zone</text>
+                    <polyline points="80,180 200,170 320,165 440,160 520,158" stroke="#27ae60" stroke-width="3" fill="none"/>
+                    <text x="530" y="158" font-family="Arial" font-size="12" fill="#27ae60">Revenue</text>
+                    <polyline points="80,200 200,180 320,150 440,110 520,80" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                    <text x="530" y="80" font-family="Arial" font-size="12" fill="#e74c3c">Production Costs</text>
+                </svg>
+                <p class="graph-interpretation"><strong>Interpretation:</strong> The gap between rising costs and stagnant revenue is widening, creating a structural deficit.</p>
+            </div>
+        </section>
+
+        <section id="projections-en">
+            <h2>10. Financial Projections and Simulations</h2>
+            <p>These projections are based on the rigorous implementation of the recommendations. They illustrate an ambitious but necessary turnaround trajectory.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicator (in M Ar)</th>
+                        <th>2023 (Actual)</th>
+                        <th>2024 (Projection)</th>
+                        <th>2025 (Projection)</th>
+                        <th>2026 (Target)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Revenue</strong></td>
+                        <td>1,200</td>
+                        <td>1,350</td>
+                        <td>1,550</td>
+                        <td>1,800</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Production Costs</strong></td>
+                        <td>1,500</td>
+                        <td>1,450</td>
+                        <td>1,500</td>
+                        <td>1,550</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Result</strong></td>
+                        <td style="color: #c0392b;"><strong>-600</strong></td>
+                        <td style="color: #e67e22;"><strong>-100</strong></td>
+                        <td style="color: #f39c12;"><strong>50</strong></td>
+                        <td style="color: #27ae60;"><strong>250</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Loss Rate</strong></td>
+                        <td>38%</td>
+                        <td>32%</td>
+                        <td>25%</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thermal Share in Mix</strong></td>
+                        <td>65%</td>
+                        <td>60%</td>
+                        <td>52%</td>
+                        <td>45%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="graph-container">
+                <div class="graph-title">Graph 2: Turnaround Path Simulation</div>
+                <svg width="100%" height="350" viewBox="0 0 650 350" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <text x="30" y="175" text-anchor="middle" font-family="Arial" font-size="12" transform="rotate(-90 30 175)">Net Result (M Ar)</text>
+                        <line x1="50" y1="300" x2="600" y2="300" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="300" x2="50" y2="50" stroke="#333" stroke-width="2"/>
+                        <line x1="50" y1="180" x2="600" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="5,5"/>
+                        <text x="45" y="185" text-anchor="end" font-family="Arial" font-size="10" fill="#888">0</text>
+                    </g>
+                    <g class="bars">
+                        <rect x="80" y="120" width="80" height="60" fill="#e74c3c" />
+                        <text x="120" y="110" text-anchor="middle" font-family="Arial" font-size="12" fill="#e74c3c">-600</text>
+                        <text x="120" y="320" text-anchor="middle" font-family="Arial" font-size="12">2023</text>
+                        
+                        <rect x="220" y="160" width="80" height="20" fill="#e67e22" />
+                        <text x="260" y="150" text-anchor="middle" font-family="Arial" font-size="12" fill="#e67e22">-100</text>
+                        <text x="260" y="320" text-anchor="middle" font-family="Arial" font-size="12">2024</text>
+
+                        <rect x="360" y="180" width="80" height="20" fill="#f39c12" />
+                        <text x="400" y="170" text-anchor="middle" font-family="Arial" font-size="12" fill="#f39c12">+50</text>
+                        <text x="400" y="320" text-anchor="middle" font-family="Arial" font-size="12">2025</text>
+
+                        <rect x="500" y="180" width="80" height="50" fill="#27ae60" />
+                        <text x="540" y="170" text-anchor="middle" font-family="Arial" font-size="12" fill="#27ae60">+250</text>
+                        <text x="540" y="320" text-anchor="middle" font-family="Arial" font-size="12">2026</text>
+                    </g>
+                </svg>
+                <p class="graph-interpretation"><strong>Interpretation for Decision-Makers:</strong> This graph shows our goal. In 2023, we are far below the waterline (in red). The plan aims to get our heads above water as early as 2025 (yellow/green) to achieve healthy profitability by 2026. Each bar represents a year of intense effort and reform. It's a difficult path, but the only possible one to survive.</p>
+            </div>
+        </section>
+
+        <section id="red-flags-en">
+            <h2>11. Critical Red Flags</h2>
+            <p>The success of the turnaround plan depends on the ability to anticipate and neutralize the following risks:</p>
+            <div class="red-flag-box">
+                <h4>🚩 Political Interference</h4>
+                <p>Blocking the tariff revision or making political appointments to key positions could nullify turnaround efforts.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚩 Social Instability</h4>
+                <p>An increase in tariffs, even if justified and targeted, could trigger protests if not accompanied by transparent communication and support measures.</p>
+            </div>
+            <div class="red-flag-box">
+                <h4>🚩 Major Technical Failure</h4>
+                <p>The breakdown of a key thermal power plant or the collapse of a part of the grid could worsen load shedding and customer distrust.</p>
+            </div>
+        </section>
+
+        <section id="plan-reduction-pertes-en">
+            <h2>12. Detailed Loss Reduction Plan (30% to 15%)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quarter</th>
+                        <th>Horizon</th>
+                        <th>Axis</th>
+                        <th>Detailed Actions</th>
+                        <th>Success Indicator (KPI)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Q1-Q2 2024</td>
+                        <td>Short Term</td>
+                        <td>Commercial</td>
+                        <td>Launch anti-fraud campaigns in 5 high-risk zones; Simplify payments via Mobile Money.</td>
+                        <td>3% reduction in commercial losses.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technical</td>
+                        <td>Emergency repairs on 20km of critical lines; Preventive maintenance on 50 transformers.</td>
+                        <td>2% reduction in technical losses.</td>
+                    </tr>
+                    <tr>
+                        <td>Q3-Q4 2024</td>
+                        <td>Mid Term</td>
+                        <td>Commercial</td>
+                        <td>Deploy 10,000 prepaid meters; Set up a dedicated collection team.</td>
+                        <td>5% improvement in collection rate.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technical</td>
+                        <td>Launch program to replace 200 aging transformers.</td>
+                        <td>4% cumulative reduction in technical losses.</td>
+                    </tr>
+                    <tr>
+                        <td>2025 onwards</td>
+                        <td>Long Term</td>
+                        <td>Commercial</td>
+                        <td>Generalize smart meters; Use AI for fraud detection.</td>
+                        <td>Commercial loss rate < 15%.</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Technical</td>
+                        <td>Investment in grid modernization (smart grids).</td>
+                        <td>Technical loss rate < 10%.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="reformes-en">
+            <h2>13. Institutional and Financial Reforms</h2>
+            <p>To become a driver of development, JIRAMA must undergo deep structural reforms.</p>
+            <h3>A. Institutional Reform: Towards Management Autonomy</h3>
+            <ul>
+                <li><strong>Legal Status:</strong> Transform JIRAMA into a <strong>State-Owned Company</strong> or a <strong>mixed-economy company</strong>, with capital open to strategic private investors.</li>
+                <li><strong>Governance:</strong> Establish an <strong>independent Board of Directors</strong>, composed of experts, civil society representatives, and the state (minority).</li>
+                <li><strong>Regulation:</strong> Create an <strong>independent regulatory authority</strong> (like France's CRE) to set tariffs, control service quality, and arbitrate disputes.</li>
+                <li><strong>Unbundling:</strong> Legally separate the activities of <strong>Generation</strong> (open to competition), <strong>Transmission</strong> (regulated natural monopoly), and <strong>Distribution</strong> (regulated monopoly).</li>
+            </ul>
+            <h3>B. Financial Reform: Ensuring Economic Viability</h3>
+            <ul>
+                <li><strong>Tariff Structure:</strong> Adopt a <strong>cost-reflective tariff</strong>, with consumption tiers and a <strong>social tariff</strong> for the poorest, financed by a targeted state subsidy.</li>
+                <li><strong>Funding Diversification:</strong> Raise funds through <strong>Public-Private Partnerships (PPPs)</strong>, issuing green bonds, and attracting private investment in renewable energy generation.</li>
+                <li><strong>Transparency:</strong> Adopt International Financial Reporting Standards (IFRS) to ensure transparency and credibility with financial partners.</li>
+            </ul>
+        </section>
+
+        <section id="recommandations-en">
+            <h2>14. Strategic Recommendations</h2>
+            <h3>Phase 1: Emergencies (0-12 months)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Commercial Cleanup:</strong> Anti-fraud drive, improved collection.</li>
+                    <li><strong>Tariff Revision:</strong> Tariffs covering operating costs + social tariff.</li>
+                    <li><strong>Debt Renegotiation.</strong></li>
+                </ul>
+            </div>
+            <h3>Phase 2: Stabilization (1-3 years)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Priority Investments:</strong> Reduce technical losses, develop REs.</li>
+                    <li><strong>Capacity Building.</strong></li>
+                </ul>
+            </div>
+            <h3>Phase 3: Strategic Vision (3-7 years)</h3>
+            <div class="recommendation-box">
+                <ul>
+                    <li><strong>Implement Reforms:</strong> Governance, regulation, unbundling.</li>
+                    <li><strong>Large-scale PPP Development.</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="conclusion-en">
+            <h2>15. Conclusion</h2>
+            <div class="highlight-box">
+                <p>JIRAMA's situation is critical but not hopeless. The turnaround requires <strong>unrelenting political will</strong> and a <strong>systemic approach</strong>. Technical solutions exist; the challenge is to implement the institutional and financial reforms that will enable their deployment, making JIRAMA a true engine of development for Madagascar.</p>
+            </div>
+        </section>
+
+        <div class="author-footer">
+            <p><strong>Report written by:</strong><br>
+            MANANTENASOA DAUPHIN GELASE MICHELOT<br>
+            <em>Freelance Consultant | Economic-Financial Researcher & Data Scientist & AI</em><br>
+            <strong>Contact:</strong> gelasemi@gmail.com | +261 38 58 586 96</p>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            const contentFr = document.getElementById('content-fr');
+            const contentEn = document.getElementById('content-en');
+            const btnFr = document.querySelector('.lang-btn:nth-child(1)');
+            const btnEn = document.querySelector('.lang-btn:nth-child(2)');
+
+            if (lang === 'fr') {
+                contentFr.style.display = 'block';
+                contentEn.style.display = 'none';
+                btnFr.classList.add('active');
+                btnEn.classList.remove('active');
+            } else {
+                contentEn.style.display = 'block';
+                contentFr.style.display = 'none';
+                btnEn.classList.add('active');
+                btnFr.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
