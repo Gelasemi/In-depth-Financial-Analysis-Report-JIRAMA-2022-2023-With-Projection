@@ -6,6 +6,10 @@
     <title>Rapport JIRAMA | Analyse & Redressement Stratégique</title>
     <style>
         /* --- Global Styles --- */
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.7;
@@ -166,6 +170,14 @@
         .toc ul li {
             margin-bottom: 8px;
         }
+        
+        .toc a {
+            color: #2980b9;
+            font-weight: normal;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
 
         /* --- Tables --- */
         table {
@@ -274,6 +286,25 @@
             margin-top:0;
         }
 
+        /* --- Back to Top Link --- */
+        .back-to-top {
+            display: inline-block;
+            float: right;
+            margin-top: 20px;
+            padding: 8px 12px;
+            background-color: #34495e;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: #2c3e50;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
         /* --- Graphs (SVG) --- */
         .graph-container {
             margin: 30px 0;
@@ -331,7 +362,7 @@
 
     </style>
 </head>
-<body>
+<body id="top">
 
     <!-- Language Switcher -->
     <div class="lang-switcher">
@@ -376,6 +407,7 @@
         <section id="introduction">
             <h2>1. Introduction : Le Cas JIRAMA</h2>
             <p>Cette analyse, basée sur les états financiers de l'exercice clos le 31 décembre 2023 audités par le Cabinet Mazars, se penche sur la JIRAMA, l'opérateur national de l'eau et de l'électricité à Madagascar. En tant qu'entreprise d'importance vitale, sa santé conditionne directement la compétitivité de l'économie, la qualité de vie des citoyens et l'attractivité du pays. Pourtant, elle est synonyme de difficultés chroniques et d'une santé financière précaire. Ce rapport vise à disséquer les racines de ces faiblesses et à proposer une feuille de route pour un redressement crédible.</p>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="kpi-dashboard">
@@ -403,6 +435,7 @@
                 <h4>Interprétation pour les Décideurs :</h4>
                 <p>Ce tableau est une photographie de l'urgence. <strong>Nous perdons énormément d'argent</strong> (Résultat Net), <strong>plus d'un tiers de l'énergie que nous produisons disparaît</strong> (Pertes), et <strong>15% de l'argent que nous facturons n'est jamais payé</strong> (Recouvrement). C'est un triple problème qui nous enfonce. La marge opérationnelle de -40% signifie que pour chaque 1000 Ar gagné, nous dépensons 1400 Ar juste pour fonctionner, avant même de payer les intérêts de la dette.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="analyse-financiere">
@@ -423,6 +456,7 @@
             <ul>
                 <li><strong>Pertes Techniques et Commerciales (T&D Losses) :</strong> Estimées entre 30% et 40% de l'électricité injectée, un "suicide économique".<sup>[2]</sup></li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="etats-financiers">
@@ -486,6 +520,7 @@
                 <h4>Interprétation pour les Décideurs :</h4>
                 <p>Ce tableau est la preuve mathématique de notre faillite. Même si nous avons réussi à augmenter un peu nos ventes (+4.3%), nos coûts ont explosé (+15.4%). Imaginez que vous vendez 4% de plus, mais vos achats augmentent de 15%. Votre perte double ! C'est exactement ce qui s'est passé. La situation est encore plus grave car les intérêts que nous payons sur nos dettes ont presque triplé, ce qui montre que nous nous endettons de plus en plus vite juste pour survivre.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="critique-modele">
@@ -507,6 +542,7 @@
                 <h4>🚨 4. Un Investissement en Déshérence : Réparer au lieu de Construire</h4>
                 <p>La quasi-totalité des maigres ressources est allouée à la maintenance d'équipements vétustes pour "tenir le coup", au lieu d'investir dans la modernisation et les énergies renouvelables qui pourraient nous sortir de la crise à long terme.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
         
         <section id="parties-prenantes">
@@ -542,6 +578,7 @@
                 <li><strong>Petites et Moyennes Entreprises (PME) en difficulté</strong> - Incapacité de payer les factures en temps et en heure.</li>
                 <li><strong>Certaines administrations publiques</strong> - Paiements souvent très retardés.</li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="dissection-faiblesses">
@@ -587,6 +624,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="comparaison-industrie">
@@ -621,6 +659,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="graphes-interpretations">
@@ -641,6 +680,7 @@
                 </svg>
                 <p class="graph-interpretation"><strong>Interprétation :</strong> L'écart entre les coûts croissants et les revenus stagnants se creuse, créant un déficit structurel.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
         
         <section id="projections">
@@ -724,6 +764,7 @@
                 </svg>
                 <p class="graph-interpretation"><strong>Interprétation pour les Décideurs :</strong> Ce graphique montre notre objectif. En 2023, nous sommes très loin sous la ligne de flottaison (en rouge). Le plan vise à sortir la tête de l'eau dès 2025 (jaune/vert) pour atteindre une rentabilité saine en 2026. Chaque barre représente une année d'efforts intenses et de réformes. C'est un chemin difficile, mais le seul possible pour survivre.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="red-flags">
@@ -741,6 +782,7 @@
                 <h4>🚩 Défaillance Technique Majeure</h4>
                 <p>La panne d'une centrale thermique clé ou l'effondrement d'une partie du réseau pourrait aggraver les délestages et la défiance des clients.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
         
         <section id="plan-reduction-pertes">
@@ -800,6 +842,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="reformes">
@@ -818,6 +861,7 @@
                 <li><strong>Diversification du Financement :</strong> Mobiliser des fonds via des <strong>Partenariats Public-Privé (PPP)</strong>, l'émission d'obligations vertes ("green bonds") et l'appel à des investisseurs privés dans la production d'énergie renouvelable.</li>
                 <li><strong>Transparence :</strong> Adopter les normes comptables internationales (IFRS) pour garantir la transparence et la crédibilité auprès des partenaires financiers.</li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="recommandations">
@@ -844,6 +888,7 @@
                     <li><strong>Développement de PPP à Grande Échelle.</strong></li>
                 </ul>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <section id="conclusion">
@@ -851,6 +896,7 @@
             <div class="highlight-box">
                 <p>La situation de la JIRAMA est critique, mais pas désespérée. Le redressement nécessite une <strong>volonté politique implacable</strong> et une <strong>approche systémique</strong>. Les solutions techniques existent ; le défi est de mettre en place les réformes institutionnelles et financières qui permettront de les mettre en œuvre pour faire de la JIRAMA un véritable moteur du développement de Madagascar.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Retour en haut</a>
         </section>
 
         <div class="author-footer">
@@ -898,6 +944,7 @@
         <section id="introduction-en">
             <h2>1. Introduction: The JIRAMA Case</h2>
             <p>This analysis, based on the financial statements for the year ended December 31, 2023, audited by Mazars, focuses on JIRAMA, the national operator of water and electricity in Madagascar. As a company of vital importance, its health directly impacts the country's economic competitiveness, citizens' quality of life, and attractiveness to investors. However, it is synonymous with chronic difficulties and precarious financial health. This report aims to dissect the roots of these weaknesses and propose a roadmap for a credible turnaround.</p>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
         
         <section id="kpi-dashboard-en">
@@ -925,6 +972,7 @@
                 <h4>Interpretation for Decision-Makers:</h4>
                 <p>This dashboard is a picture of the emergency. <strong>We are losing a huge amount of money</strong> (Net Result), <strong>more than a third of the energy we produce disappears</strong> (Loss Rate), and <strong>15% of the money we bill is never paid</strong> (Collection Rate). This is a triple problem that is sinking us. The -40% operating margin means that for every 1000 Ar earned, we spend 1400 Ar just to operate, even before paying interest on our debt.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="analyse-financiere-en">
@@ -945,6 +993,7 @@
             <ul>
                 <li><strong>Technical and Commercial Losses (T&D Losses):</strong> Estimated between 30% and 40% of electricity injected, an "economic suicide".<sup>[2]</sup></li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="etats-financiers-en">
@@ -1008,6 +1057,7 @@
                 <h4>Interpretation for Decision-Makers:</h4>
                 <p>This table is the mathematical proof of our bankruptcy. Even though we managed to increase our sales slightly (+4.3%), our costs exploded (+15.4%). Imagine you sell 4% more, but your purchases increase by 15%. Your loss doubles! This is exactly what happened. The situation is even more critical because the interest we pay on our debts has almost tripled, showing that we are borrowing faster and faster just to survive.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="critique-modele-en">
@@ -1029,6 +1079,7 @@
                 <h4>🚨 4. Disinvested Investment: Repairing Instead of Building</h4>
                 <p>Virtually all meager resources are allocated to maintaining aging equipment to "stay afloat," instead of investing in modernization and renewables that could lift us out of the crisis in the long run.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="parties-prenantes-en">
@@ -1064,6 +1115,7 @@
                 <li><strong>Small and Medium-sized Enterprises (SMEs) in difficulty</strong> - Inability to pay bills on time.</li>
                 <li><strong>Certain public administrations</strong> - Payments are often very late.</li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="dissection-faiblesses-en">
@@ -1109,6 +1161,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="comparaison-industrie-en">
@@ -1143,6 +1196,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="graphes-interpretations-en">
@@ -1163,6 +1217,7 @@
                 </svg>
                 <p class="graph-interpretation"><strong>Interpretation:</strong> The gap between rising costs and stagnant revenue is widening, creating a structural deficit.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="projections-en">
@@ -1246,6 +1301,7 @@
                 </svg>
                 <p class="graph-interpretation"><strong>Interpretation for Decision-Makers:</strong> This graph shows our goal. In 2023, we are far below the waterline (in red). The plan aims to get our heads above water as early as 2025 (yellow/green) to achieve healthy profitability by 2026. Each bar represents a year of intense effort and reform. It's a difficult path, but the only possible one to survive.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="red-flags-en">
@@ -1263,6 +1319,7 @@
                 <h4>🚩 Major Technical Failure</h4>
                 <p>The breakdown of a key thermal power plant or the collapse of a part of the grid could worsen load shedding and customer distrust.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="plan-reduction-pertes-en">
@@ -1322,6 +1379,7 @@
                     </tr>
                 </tbody>
             </table>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="reformes-en">
@@ -1340,6 +1398,7 @@
                 <li><strong>Funding Diversification:</strong> Raise funds through <strong>Public-Private Partnerships (PPPs)</strong>, issuing green bonds, and attracting private investment in renewable energy generation.</li>
                 <li><strong>Transparency:</strong> Adopt International Financial Reporting Standards (IFRS) to ensure transparency and credibility with financial partners.</li>
             </ul>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="recommandations-en">
@@ -1366,6 +1425,7 @@
                     <li><strong>Large-scale PPP Development.</strong></li>
                 </ul>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <section id="conclusion-en">
@@ -1373,6 +1433,7 @@
             <div class="highlight-box">
                 <p>JIRAMA's situation is critical but not hopeless. The turnaround requires <strong>unrelenting political will</strong> and a <strong>systemic approach</strong>. Technical solutions exist; the challenge is to implement the institutional and financial reforms that will enable their deployment, making JIRAMA a true engine of development for Madagascar.</p>
             </div>
+            <a href="#top" class="back-to-top">↑ Back to top</a>
         </section>
 
         <div class="author-footer">
@@ -1402,6 +1463,34 @@
                 btnFr.classList.remove('active');
             }
         }
+
+        // --- ROBUST ANCHOR SCROLLING SCRIPT ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all links that start with '#'
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Prevent default anchor jump
+                    e.preventDefault();
+
+                    // Get the target element
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Calculate the target's position relative to the viewport
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        
+                        // Scroll smoothly to the target
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
